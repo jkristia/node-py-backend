@@ -84,11 +84,14 @@ def parse_args(argv: Sequence[str] | None = None) -> ServiceArgs:
 
 
 def run(argv: Sequence[str] | None = None) -> None:
-    logging.basicConfig(level=logging.INFO, format='[%(asctime)s] %(levelname)s %(message)s')
+    logging.basicConfig(level=logging.INFO, format='[%(asctime)s] %(levelname)s %(message)s', force=True)
     service = NumberHelperService()
     cli_args = parse_args(argv)
     logging.info("Starting NumberHelperService on %s:%s", cli_args.host, cli_args.port)
-    uvicorn.run(service.app, host=cli_args.host, port=cli_args.port, log_level="info")
+    try:
+        uvicorn.run(service.app, host=cli_args.host, port=cli_args.port, log_level="info")
+    except KeyboardInterrupt:
+        logging.info("NumberHelperService interrupted, shutting down")
 
 
 if __name__ == "__main__":

@@ -10,3 +10,7 @@ Generating the project with the following prompt
 ```
 
 - model GPT-5.1-Codex-mini, did not work
+- model GPT-5.1-codex works.
+	- projected created from project_notes
+	- interactive process to get it to a state / format i want
+	- project_notes updated by copilot after each step

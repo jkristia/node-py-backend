@@ -12,6 +12,22 @@
       "args": ["--host", "localhost", "--port", "8001"],
       "python": "${workspaceFolder}/.venv/bin/python",
       "justMyCode": true
+    },
+    {
+      "name": "Node: Backend (build & run)",
+      "type": "pwa-node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal",
+      "runtimeExecutable": "node",
+      "program": "${workspaceFolder}/backend/dist/main.js",
+      "preLaunchTask": "npm: build",
+      "skipFiles": ["<node_internals>/**"],
+      "outFiles": ["${workspaceFolder}/backend/dist/**/*.js"],
+      "presentation": {
+        "group": "backend",
+        "order": 1
+      }
     }
   ]
 }

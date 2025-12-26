@@ -25,7 +25,16 @@ This project consists of:
 
 ## Current Feattures
 List of what has been implemented so far:
-- NumberHelper FastAPI service lives in `numberhelper/src/number_helper_service.py`, exposes `/health` (typed response with uptime) and `/aggregate` backed by NumPy/pandas, tracks startup/shutdown via lifespan handlers, and is started via CLI args (`--host`, `--port`).
+- **NumberHelper FastAPI service**
+	- Lives in `numberhelper/src/number_helper_service.py`
+	- Exposes `/health` (typed response with uptime) and `/aggregate` backed by NumPy/pandas
+	- Uses lifespan hooks for startup/shutdown logging and accepts CLI args (`--host`, `--port`)
+	- Shuts down cleanly whether launched standalone or from the Node backend
+- **Backend Express service (TypeScript)**
+	- Encapsulated in `Main`, launches the helper process and waits for readiness
+	- Proxies `/numbers/*` routes via `NumberHelperClient` and exposes `/health` including helper status
+	- Forwards SIGINT/SIGTERM (translating Ctrl+C to SIGTERM for the helper) so both processes exit gracefully
+	- Shared configuration, routes, and clients live under `backend/src/` with strict TypeScript interfaces
 
 ## Next Steps
 List of TODO items

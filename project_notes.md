@@ -8,22 +8,24 @@ This project consists of:
 - **NumberHelper:** Python async service with Rest API (and later zeroMQ)
 
 ## Design Decisions
+- node version: 20+
+- python version: 3.12
 - **Backend:**
-	- use epxress for api
-	- encapsulate express app in Main entrypoint class
+	- use epxress for server api, Axios for api requests send to numberhelper
+	- encapsulate express app in typescript class Main. This is the entry point for the backend app
 	- structure:
 		- `backend/src/main.ts`
 	- cleanly handle SIGTERM
 - **NumberHelper**
 	- use FastApi, run async
-	- encapsulate api in NumberHelperService entry point class
+	- encapsulate FastApi in class NumberHelperService. This is the main entry point for the helper service
 	- structure:
-		- `numberhelper/src/number_helper_servive.py`
+		- `numberhelper/src/number_helper_service.py`
 	- cleanly handle SIGTERM
 
 ## Current Feattures
-List of what has been implemented to far:
-- TODO
+List of what has been implemented so far:
+- NumberHelper FastAPI service lives in `numberhelper/src/number_helper_service.py`, exposes `/health` (typed response with uptime) and `/aggregate` backed by NumPy/pandas, tracks startup/shutdown via lifespan handlers, and is started via CLI args (`--host`, `--port`).
 
 ## Next Steps
 List of TODO items

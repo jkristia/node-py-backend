@@ -1,0 +1,89 @@
+# Node.js / TypeScript
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Environment variables
+The method "on_event" in class "FastAPI" is deprecated
+  on_event is deprecated, use lifespan event handlers instead..env
+.env.local
+.env.*.local
+
+# IDEs and editors
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

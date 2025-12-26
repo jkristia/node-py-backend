@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Number Helper Service",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/numberhelper/src/number_helper_service.py",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}",
+      "env": {},
+      "args": ["--host", "localhost", "--port", "8001"],
+      "python": "${workspaceFolder}/.venv/bin/python",
+      "justMyCode": true
+    }
+  ]
+}

@@ -13,6 +13,7 @@ from typing import AsyncIterator, Sequence
 import numpy as np
 import pandas as pd
 from fastapi import FastAPI, HTTPException
+from fastapi.concurrency import run_in_threadpool
 import uvicorn
 from api_models import AggregateRequest, AggregateResponse, HealthResponse
 
@@ -56,9 +57,12 @@ class NumberHelperService:
         if not payload.numbers:
             raise HTTPException(status_code=400, detail="numbers list cannot be empty")
 
-        np_array = np.array(payload.numbers, dtype=float)
+        return await run_in_threadpool(self._aggregate_blocking, payload.numbers)
+
+    def _aggregate_blocking(self, numbers: Sequence[float]) -> AggregateResponse:
+        np_array = np.array(numbers, dtype=float)
         series = pd.Series(np_array)
-        response = AggregateResponse(
+        return AggregateResponse(
             count=int(series.count()),
             sum=float(series.sum()),
             mean=float(series.mean()),
@@ -66,7 +70,6 @@ class NumberHelperService:
             min=float(series.min()),
             max=float(series.max()),
         )
-        return response
 
 
 @dataclass

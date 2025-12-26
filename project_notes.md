@@ -35,10 +35,16 @@ List of what has been implemented so far:
 	- Proxies `/numbers/*` routes via `NumberHelperClient` and exposes `/health` including helper status
 	- Forwards SIGINT/SIGTERM (translating Ctrl+C to SIGTERM for the helper) so both processes exit gracefully
 	- Shared configuration, routes, and clients live under `backend/src/` with strict TypeScript interfaces
+- **Developer Tooling**
+	- Repo-level `Makefile` adds `make install`, `make run`, `make clean`, and `make help`
+	- `make run` boots the TypeScript backend while pointing `PYTHON_CMD` at the existing `.venv`
+	- `make install` delegates to hidden `.install-node`/`.install-python` targets that enforce a pre-created `.venv`
+	- `make clean` removes `backend/node_modules` and uninstalls the helper’s Python dependencies without deleting the virtualenv
 
 ## Next Steps
 List of TODO items
-- Launch `NumberHelperService` from backend at startup.
+- Add automated tests (unit + integration) for both backend and helper services.
+- Provide API docs / examples (e.g., expand api.rest) and wire into CI for lint/build.
 
 ## Coding Guidelines
 - **TypeScript:**

@@ -14,3 +14,10 @@ Generating the project with the following prompt
 	- projected created from project_notes
 	- interactive process to get it to a state / format i want
 	- project_notes updated by copilot after each step
+
+## Project Summary
+
+- **Backend:** TypeScript/Express service in `backend/src`, exposes `/health` plus `/numbers/*` routes and supervises the Python helper.
+- **Helper:** FastAPI worker in `numberhelper/src/number_helper_service.py` handling `/health` + `/aggregate` with NumPy/pandas aggregations.
+- **Process Lifecycle:** Backend boots the helper, waits for readiness via `NumberHelperClient`, and forwards SIGINT/SIGTERM for graceful shutdown.
+- **Tooling:** Repo-level `Makefile` (see `make help`) streamlines install/run/clean, requiring an existing `.venv` for Python deps while ensuring `PYTHON_CMD` points to it.

@@ -18,9 +18,10 @@ This project consists of:
 	- cleanly handle SIGTERM
 - **NumberHelper**
 	- use FastApi, run async
-	- encapsulate FastApi in class NumberHelperService. This is the main entry point for the helper service
+	- encapsulate FastApi in class NumberHelperService and keep the CLI bootstrap separate in `main.py`
 	- structure:
 		- `numberhelper/src/number_helper_service.py`
+		- `numberhelper/src/main.py`
 	- cleanly handle SIGTERM
 
 ## Current Feattures
@@ -28,7 +29,7 @@ List of what has been implemented so far:
 - **NumberHelper FastAPI service**
 	- Lives in `numberhelper/src/number_helper_service.py`
 	- Exposes `/health` (typed response with uptime) and `/aggregate` backed by NumPy/pandas
-	- Uses lifespan hooks for startup/shutdown logging and accepts CLI args (`--host`, `--port`)
+	- Uses lifespan hooks for startup/shutdown logging; CLI parsing (`--host`, `--port`) now lives in `numberhelper/src/main.py`
 	- Shuts down cleanly whether launched standalone or from the Node backend
 - **Backend Express service (TypeScript)**
 	- Encapsulated in `Main`, launches the helper process and waits for readiness
@@ -63,6 +64,7 @@ List of TODO items
 	- Strict mode enabled
 	- use express for API
 	- follow typescript naming conversion for files, classes and variables
+	- all variables, parameters and return values must by typed
 - **Python:**
 	- use async FastAPI for service
 	- follow python naming convention for files, classes and variables

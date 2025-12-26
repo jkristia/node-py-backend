@@ -44,7 +44,7 @@ export const loadConfig = (): AppConfig => {
 	const helperPort = parseNumber(process.env.NUMBER_HELPER_PORT, 8001);
 	const helperScript =
 		process.env.NUMBER_HELPER_SCRIPT ??
-		path.resolve(process.cwd(), '..', 'numberhelper', 'src', 'number_helper_service.py');
+		path.resolve(process.cwd(), '..', 'numberhelper', 'src', 'main.py');
 
 	return {
 		port: backendPort,

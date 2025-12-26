@@ -33,6 +33,7 @@ export class Routes {
 	}
 
 	private registerNumberRoutes(): void {
+		// <host>/numbers/*, e.g. localhost/numbers/aggregate
 		this.app.use('/numbers', buildNumberRouter(this.helperClient));
 	}
 

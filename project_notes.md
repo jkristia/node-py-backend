@@ -41,6 +41,18 @@ List of what has been implemented so far:
 	- `make install` delegates to hidden `.install-node`/`.install-python` targets that enforce a pre-created `.venv`
 	- `make clean` removes `backend/node_modules` and uninstalls the helper’s Python dependencies without deleting the virtualenv
 
+## API
+- **Backend Host**: `<host>` represents the Express server root (defaults to `http://127.0.0.1:3000`).
+- **Helper Host**: `<helper-host>` represents the FastAPI helper (defaults to `http://127.0.0.1:8000`).
+
+| Method | Path | Host | Description |
+| --- | --- | --- | --- |
+| GET | `/health` | `<host>` | Backend health summary including helper status. |
+| GET | `/numbers/health` | `<host>` | Proxies helper uptime/status for quick readiness checks. |
+| POST | `/numbers/aggregate` | `<host>` | Accepts `{ "numbers": number[] }` and returns aggregate stats from the helper. |
+| GET | `/health` | `<helper-host>` | Helper uptime/status payload consumed by the backend. |
+| POST | `/aggregate` | `<helper-host>` | Raw helper aggregation endpoint; same payload/response as the proxied route. |
+
 ## Next Steps
 List of TODO items
 - Add automated tests (unit + integration) for both backend and helper services.

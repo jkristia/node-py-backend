@@ -1,0 +1,12 @@
+@host = http://localhost:3000
+
+### health check
+GET {{host}}/health
+
+### aggregate a list of numbers
+POST {{host}}/numbers/aggregate
+Content-Type: application/json
+
+{
+  "numbers": [1, 2, 3, 4, 5]
+}

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import asyncio
 import logging
 import time
 from contextlib import asynccontextmanager
@@ -13,7 +14,6 @@ from typing import AsyncIterator, Sequence
 import numpy as np
 import pandas as pd
 from fastapi import FastAPI, HTTPException
-from fastapi.concurrency import run_in_threadpool
 import uvicorn
 from api_models import AggregateRequest, AggregateResponse, HealthResponse
 
@@ -57,7 +57,7 @@ class NumberHelperService:
         if not payload.numbers:
             raise HTTPException(status_code=400, detail="numbers list cannot be empty")
 
-        return await run_in_threadpool(self._aggregate_blocking, payload.numbers)
+        return await asyncio.to_thread(self._aggregate_blocking, payload.numbers)
 
     def _aggregate_blocking(self, numbers: Sequence[float]) -> AggregateResponse:
         np_array = np.array(numbers, dtype=float)
